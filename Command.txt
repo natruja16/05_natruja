@@ -10,3 +10,38 @@ docker rm e6dab5ebdd63
 docker run -p 8800:80 nginx
 docker run -d -p 7800:80 nginx
 docker system df
+
+
+โหลด images นะคะ 555555
+docker pull wordpress
+docker pull mysql:5.7
+docker pull phpmyadmin/phpmyadmin
+
+** create network **
+
+docker network create wordpress
+docker network ls ดู
+docker network rm wordpress ลบ wordpress
+
+docker run --name mysql --network wordpress -e MYSQL_ROOT_PASSWORD=1111 -e MYSQL_DATABASE=wordpress_db -e MYSQL_USER=wordpress -e MYSQL_PASSWORD=wordpress -d mysql:5.7
+docker run --name pma --network wordpress -p 8888:80 -e PMA_ARBITRARY=1 -d phpmyadmin/phpmyadmin
+docker run -d --name wordpress --network wordpress -p 888:80 -e WORDPRESS_DB_HOST=mysql -e WORDPRESS_DB_USER=wordpress -e WORDPRESS_DB_PASSWORD=wordpress  -e WORDPRESS_DB_NAME=wordpress_db wordpress
+
+Server:mysql
+User:wordpress
+Password:wordpress
+
+** Join network **
+docker network connect wordpress mysql
+
+docker exec -it pma sh
+apt-get update
+apt-get install vim
+vi a.text สร้างไฟล์
+cat a.text ดูว่าพิมพ์อะไรเข้าไป
+
+docker volume ls
+
+Server:mysql02
+User:wordpress
+Password:wordpress
