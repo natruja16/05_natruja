@@ -1,0 +1,12 @@
+docker -v
+docker ps --all
+docker run hello-world
+docker run bustbox ping google.com
+docker stop 2c2f6eeb50d7
+docker run busybox
+docker pull busybox
+docker creat busybox ping google.com
+docker rm e6dab5ebdd63
+docker run -p 8800:80 nginx
+docker run -d -p 7800:80 nginx
+docker system df
