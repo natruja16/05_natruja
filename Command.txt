@@ -45,3 +45,14 @@ docker volume ls
 Server:mysql02
 User:wordpress
 Password:wordpress
+
+Subtitle: natruja
+usename: natruja
+password: 0829278725
+
+C:\Users\This\Desktop\Docker\wordpress\mysql
+C:\Users\This\Desktop\Docker\wordpress\wp
+
+docker run -d --name mysql03 --network wordpress03 -v C:\Users\This\Desktop\Docker\wordpress\mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=1111 -e MYSQL_DATABASE=wordpress03_db -e MYSQL_USER=wordpress -e MYSQL_PASSWORD=wordpress  mysql:5.7 
+docker run -d --name wordpress03 --network wordpress03 -v C:\Users\This\Desktop\Docker\wordpress\wp:/var/www/html -e WORDPRESS_DB_HOST=mysql03 -e WORDPRESS_DB_USER=wordpress -e WORDPRESS_DB_PASSWORD=wordpress -e WORDPRESS_DB_NAME=wordpress03_db -p 890:80 wordpress
+docker run --name pma03 --network wordpress03 -p 8890:80 -e PMA_ARBITRARY=1 -d phpmyadmin/phpmyadmin
